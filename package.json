@@ -1,0 +1,27 @@
+{
+  "name": "mywebsite",
+  "version": "1.0.0",
+  "description": "My Website!!!",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChaseDevSmith/MyWebsite.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChaseDevSmith/MyWebsite/issues"
+  },
+  "homepage": "https://github.com/ChaseDevSmith/MyWebsite#readme",
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "react": "^18.3.1",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.8"
+  }
+}
