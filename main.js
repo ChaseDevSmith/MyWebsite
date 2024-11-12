@@ -3,8 +3,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 
-import { gsap } from 'gsap';
-import { initScene } from './init';
+import { gsap } from 'https://cdn.jsdelivr.net/npm/gsap@3.11.0/dist/gsap.min.js';import { initScene } from './init';
 import {Planet} from './planets'
 
 ///scene init, camera init, light init
