@@ -12,7 +12,7 @@ const {camera, scene, renderer} = initScene()
 //loaders 
 const loader = new GLTFLoader();
 //load planets
-const monkeyGLB = await loader.loadAsync("assets/Monkey D. Blender.glb")
+const monkeyGLB = await loader.loadAsync("/assets/Monkey D. Blender.glb")
 const monkeyScale ={x:1,y:1,z:1}
 const monkeyPosition = {
   x:0, 
@@ -21,7 +21,7 @@ const monkeyPosition = {
 }
 const monkey = new Planet(monkeyGLB,monkeyScale,monkeyPosition)
       scene.add(monkey.planet.scene)
-const purplePlanetglb = await loader.loadAsync('assets/PURPLEPLANET.glb');
+const purplePlanetglb = await loader.loadAsync('/assets/PURPLEPLANET.glb');
 const purpleScale = {
   x : .7,
   y : .7,
@@ -34,7 +34,7 @@ const purplePosition = {
 }
 const purplePlanet = new Planet(purplePlanetglb,purpleScale,purplePosition)
      scene.add(purplePlanet.planet.scene)
-const tigerPlanetGLB = await loader.loadAsync( "assets/TiggerPlanet.glb")
+const tigerPlanetGLB = await loader.loadAsync( "/assets/TiggerPlanet.glb")
 const tigerScale = {
   
   x : .7,
@@ -52,7 +52,7 @@ const tigerPlanet = new Planet(tigerPlanetGLB, tigerScale,tigerPosition)
 const orbitObject = new THREE.Object3D;
      scene.add(orbitObject)
 orbitObject.position.set(-1.5,-1.5,1.3)
-const blueMoonglb = await loader.loadAsync('assets/blueMoonWithDarkBlueSpots.glb');
+const blueMoonglb = await loader.loadAsync('/assets/blueMoonWithDarkBlueSpots.glb');
 const blueMoonScale = {
   
   x : .7,
@@ -68,7 +68,7 @@ const blueMoonPosition = {
 const blueMoon = new Planet(blueMoonglb,blueMoonScale,blueMoonPosition)
 //empty obj
      orbitObject.add(blueMoon.planet.scene)
-const maroonPlanetglb = await loader.loadAsync("assets/maroonPlanet.glb");
+const maroonPlanetglb = await loader.loadAsync("/assets/maroonPlanet.glb");
 const maroonPlanetScale = {
   
   x : .7,
@@ -90,14 +90,14 @@ const maroonPlanet =new Planet(maroonPlanetglb,maroonPlanetScale,maroonPlanetPos
 
 //points
 const tLoader = new THREE.TextureLoader()
-const orbitStars = tLoader.load("assets/Untitled_Artwork 2.png")
-const bgStars = await tLoader.load("assets/Untitled_Artwork 2.png")
-const blueEight = await tLoader.loadAsync("assets/blueEigth.png")
-const greenQrest = await tLoader.loadAsync("assets/quarterRest.png")
-const wholeNote = await tLoader.loadAsync("assets/wholeNote.png")
-const sixteenthNote = await tLoader.loadAsync("assets/16thnote.png")
-const halfRest = await tLoader.loadAsync("assets/halfRest.png")
-const dotHalf = await tLoader.loadAsync("assets/dotHalf.png")
+const orbitStars = tLoader.load("/assets/Untitled_Artwork 2.png")
+const bgStars = await tLoader.load("/assets/Untitled_Artwork 2.png")
+const blueEight = await tLoader.loadAsync("/assets/blueEigth.png")
+const greenQrest = await tLoader.loadAsync("/assets/quarterRest.png")
+const wholeNote = await tLoader.loadAsync("/assets/wholeNote.png")
+const sixteenthNote = await tLoader.loadAsync("/assets/16thnote.png")
+const halfRest = await tLoader.loadAsync("/assets/halfRest.png")
+const dotHalf = await tLoader.loadAsync("/assets/dotHalf.png")
 // geos
 const halfNoteTorusGeo = new THREE.TorusGeometry(3, 1.3, 16 ,48);
 const particlesGeometry = new THREE.BufferGeometry;
