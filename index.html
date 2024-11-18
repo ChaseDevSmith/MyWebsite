@@ -25,6 +25,45 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   </head>
   <body>
+	<style>
+      #toggle-controls {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+  
+      #toggle-controls:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      #reset-scene {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+  
+      #reset-scene:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+    </style>
+<button id="toggle-controls" style="position: fixed; top: 10px; left: 10px;">Toggle Orbit Controls</button>  
 	  
     <script type="module" src="main.js"></script>
 	  <script  type="module" src="/init.js"></script>
