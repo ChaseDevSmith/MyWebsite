@@ -15,5 +15,21 @@ scene.add( light, light2 ,);
 //orbit controls
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.update();
-return {camera,scene, renderer}
+  function toggleOrbitControls() {
+    // Toggle the flag
+    controlsEnabled = !controlsEnabled;
+
+    // Enable or disable the controls
+    controls.enabled = controlsEnabled;
+    
+    // Optionally log the status (for debugging)
+    console.log(`OrbitControls ${controlsEnabled ? 'enabled' : 'disabled'}`);
+
+}
+window.addEventListener('keydown', (event) => {
+    if (event.key === 't' || event.key === 'T') {
+        toggleOrbitControls();
+    }
+});
+return {camera,scene, renderer,  controls, controlsEnabled}
 }
