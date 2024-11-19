@@ -15,6 +15,8 @@ scene.add( light, light2 ,);
 //orbit controls
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.update();
+  controls.enabled = true
+let controlsEnabled = true;
   function toggleOrbitControls() {
     // Toggle the flag
     controlsEnabled = !controlsEnabled;
