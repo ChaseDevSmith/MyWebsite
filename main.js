@@ -8,9 +8,11 @@ import { initScene } from '/init.js';
 import {Planet} from '/planets.js'
 
 ///scene init, camera init, light init
-const {camera, scene, renderer} = initScene()
+let {camera, scene, renderer, controlsEnabled, controls} = initScene()
 //loaders 
 const loader = new GLTFLoader();
+const toggleButton = document.getElementById('toggle-controls');
+
 //load planets
 const monkeyGLB = await loader.loadAsync("/assets/Monkey D. Blender.glb")
 const monkeyScale ={x:1,y:1,z:1}
@@ -257,7 +259,14 @@ tigerPlanet.planet.scene.rotation.x = .7
 
 maroonPlanet.planet.scene.rotation.z = -.7
 maroonPlanet.planet.scene.rotation.x = .7
-
+//functions for clicking
+toggleButton.addEventListener('click', function() {
+  // Toggle the OrbitControls enabled state
+  controlsEnabled = !controlsEnabled;
+  controls.enabled = controlsEnabled;  // Update OrbitControls based on the new state
+  
+  console.log(`OrbitControls ${controlsEnabled ? 'enabled' : 'disabled'}`);
+});
 
 
 ///mouse things
