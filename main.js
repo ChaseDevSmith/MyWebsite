@@ -306,21 +306,7 @@ ttfLoader.load("assets/fonts/JetBrainsMono-SemiBold.ttf",(json)=>{
   createText("about me", monkey.planet.scene, new THREE.Vector3(-1,-.5,0.77))
 
 
-  // const textGeometry1 = new TextGeometry("PLEASE", {
-  //   font:jetFont,
-  //   depth: .1,
-  //   size: .28});
-  //   const textMat = new THREE.MeshNormalMaterial();
-  //   const textMesh = new THREE.Mesh(textGeometry1, textMat)
-  //   const modelPosition = tigerPlanet.planet.scene.position;
-
-  // // Adjust text position in front and above the model (planet)
-  // textMesh.position.set(
-  //   modelPosition.x ,         // Keep the same X position
-  //   modelPosition.y ,     // Slightly above the planet (adjust value for desired height)
-  //   modelPosition.z      // Slightly in front (adjust value for desired distance)
-  // );
-  // purplePlanet.planet.scene.add(textMesh)
+ 
 
 })
 function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
@@ -337,21 +323,17 @@ function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
   
   });
 
-  // Create the material for the text
   const textMaterial = new THREE.MeshBasicMaterial({  color: 0xFFD700   });
 
-  // Create the mesh (the actual text object)
   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
-  // Position the text above the planet
   const planetPosition = planetScene.position;
   textMesh.position.set(
-    planetPosition.x + offset.x ,        // Same X position as the planet
-    planetPosition.y + offset.y,     // Slightly above the planet (adjust as needed)
-    planetPosition.z + offset.z         // Same Z position as the planet
+    planetPosition.x + offset.x ,        
+    planetPosition.y + offset.y,     
+    planetPosition.z + offset.z        
   );
 
-  // Add the text mesh as a child of the planet's scene
   planetScene.add(textMesh);
   console.log(`Text placed at: ${textMesh.position.x}, ${textMesh.position.y}, ${textMesh.position.z}, ${textMesh.name}`);
 }
