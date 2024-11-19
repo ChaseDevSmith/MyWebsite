@@ -35,7 +35,7 @@ const purpleScale = {
 }
 const purplePosition = {
   x : -1.5,
-  y : -1.5,
+  y : -2,
   z : 1.3
 }
 const purplePlanet = new Planet(purplePlanetglb,purpleScale,purplePosition)
@@ -319,7 +319,7 @@ function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
   const textGeometry = new TextGeometry(text, {
     font: jetFont,
     size: 0.28,  // Size of the text
-    depth: 0.01,  // Depth of the text
+    depth: 0.01  // Depth of the text
   
   });
 
