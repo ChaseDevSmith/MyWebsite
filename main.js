@@ -282,7 +282,8 @@ window.addEventListener('click', onMouseClick, false);
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
             mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-            raycaster.update(camera, mouse);
+            
+  raycaster.setFromCamera(mouse,camera);
 
             const intersects = raycaster.intersectObjects(scene.children);
             for (let i = 0; i < intersects.length; i++) {
