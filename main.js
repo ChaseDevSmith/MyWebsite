@@ -265,13 +265,13 @@ tigerPlanet.planet.scene.rotation.x = .7
 maroonPlanet.planet.scene.rotation.z = -.7
 maroonPlanet.planet.scene.rotation.x = .7
 //functions for clicking
-toggleButton.addEventListener('click', function() {
-  // Toggle the OrbitControls enabled state
-  controlsEnabled = !controlsEnabled;
-  controls.enabled = controlsEnabled;  // Update OrbitControls based on the new state
+// toggleButton.addEventListener('click', function() {
+//   // Toggle the OrbitControls enabled state
+//   controlsEnabled = !controlsEnabled;
+//   controls.enabled = controlsEnabled;  // Update OrbitControls based on the new state
   
-  console.log(`OrbitControls ${controlsEnabled ? 'enabled' : 'disabled'}`);
-});
+//   console.log(`OrbitControls ${controlsEnabled ? 'enabled' : 'disabled'}`);
+// });
 
 
 ///mouse things
