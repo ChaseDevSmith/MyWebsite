@@ -6,7 +6,7 @@ import { TextGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/example
 import { TTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/TTFLoader.js';
 import { FontLoader } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/FontLoader.js';
 
-import {gsap} from "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+import gsap from "https://unpkg.com/gsap@3.12.5/dist/gsap.min.js";
 // import { gsap } from 'https://cdn.jsdelivr.net/npm/gsap@3.11.0/dist/gsap.min.js';
 import { initScene } from '/init.js';
 import {Planet} from '/planets.js'
