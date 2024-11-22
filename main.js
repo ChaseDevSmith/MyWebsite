@@ -571,32 +571,22 @@ function resetPlanets(){
 
 function animate() {
 
-  raycaster.setFromCamera(mouse, camera)
-	renderer.render( scene, camera );
-  // newTorusMesh.rotation.y += 0.01;
-  // torus.rotation.z += 0.0019;
-  //MOTION
+renderer.render(scene, camera);
   newTorusMesh.rotation.z += 0.0006;
-firstRing.rotation.z += 0.0007;  
-sixthRing.rotation.z += 0.0012;
-halfRestRing.rotation.z += 0.0005;  
-dotHalfRing.rotation.z +=  - 0.0010;
-orbitObject.rotation.y += 0.0019;  
-orbitObject.rotation.x += 0.0019;  
-
-//mouse
-raycaster.setFromCamera(mouse, camera);
-const intersects = raycaster.intersectObjects(scene.children);
-for (let i = 0; i < intersects.length; i++) {
-    const object = intersects[i].object;
-    // console.log(object)
-    // gsap.to(object.scale, { x: 1.2, y: 1.2, z: 1.2, duration: 0.2 });
+  firstRing.rotation.z += 0.0007;
+  sixthRing.rotation.z += 0.0012;
+  halfRestRing.rotation.z += 0.0005;
+  dotHalfRing.rotation.z += -0.0010;
+  orbitObject.rotation.y += 0.0019;
+  orbitObject.rotation.x += 0.0019;
+  if (controlsEnabled) {
+    controls.update();  
+  } else {
+    controls.update();
   }
-  // scene.children.forEach((obj) => {
-  //   if (!intersects.some(intersect => intersect.object === obj)) {
-  //     // gsap.to(obj.scale, { x: 1, y: 1, z: 1, duration: 0.2 });
-  //   }
-  // });
+  if (!controlsEnabled) {
+    controls.enabled = false;  
+  }
 
 
 }
