@@ -102,8 +102,7 @@ const maroonPlanet =new Planet(maroonPlanetglb,maroonPlanetScale,maroonPlanetPos
 
 //points
 const tLoader = new THREE.TextureLoader()
-const orbitStars = tLoader.load("/assets/Untitled_Artwork 2.png")
-const bgStars = await tLoader.load("/assets/Untitled_Artwork 2.png")
+
 const blueEight = await tLoader.loadAsync("/assets/blueEigth.png")
 const greenQrest = await tLoader.loadAsync("/assets/quarterRest.png")
 const wholeNote = await tLoader.loadAsync("/assets/wholeNote.png")
