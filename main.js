@@ -286,8 +286,11 @@ maroonPlanet.planet.scene.rotation.x = .7
 
 ///mouse things
 // document.addEventListener("mousedown", onMouseClick)
-
-window.addEventListener('click', onMouseClick, false);
+   window.addEventListener('click', onMouseOrTouch, false);
+window.addEventListener('click', onRockClick, false);
+window.addEventListener('touchstart', onRockClick, false);
+window.addEventListener('touchstart', onMouseOrTouch, false);
+// window.addEventListener('click', onMouseClick, false);
 
         function onMouseClick(event) {
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
