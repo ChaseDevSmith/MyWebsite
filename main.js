@@ -17,7 +17,6 @@ let {camera, scene, renderer, controlsEnabled, controls} = initScene()
 const toggleButton = document.getElementById('toggle-controls');
 const loader = new GLTFLoader();
 const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
 const initialCameraPosition = camera.position.clone();
 
 
@@ -225,7 +224,6 @@ backRock.visible = false;
 
 
 //moving planets
-const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 
