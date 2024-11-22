@@ -33,6 +33,10 @@ const monkeyPosition = {
 }
 const monkey = new Planet(monkeyGLB,monkeyScale,monkeyPosition)
       scene.add(monkey.planet.scene)
+const monkeyWp = new THREE.Vector3();
+      monkey.planet.scene.getWorldPosition(monkeyWp)
+      planetInitData.push({object: monkey.planet.scene, worldPosition: monkeyWp})
+      console.log(planetInitData)
 const purplePlanetglb = await loader.loadAsync('/assets/PURPLEPLANET.glb');
 const purpleScale = {
   x : .7,
@@ -46,6 +50,12 @@ const purplePosition = {
 }
 const purplePlanet = new Planet(purplePlanetglb,purpleScale,purplePosition)
      scene.add(purplePlanet.planet.scene)
+const ppWp = new THREE.Vector3();
+    purplePlanet.planet.scene.getWorldPosition(ppWp)
+    console.log('Project planet world position:', ppWp);
+    planetInitData.push({object: purplePlanet.planet.scene, worldPosition: ppWp})
+    console.log("updated initial position array w purple planet",planetInitData)
+
 const tigerPlanetGLB = await loader.loadAsync( "/assets/TiggerPlanet.glb")
 const tigerScale = {
   
@@ -61,6 +71,9 @@ const tigerPosition = {
 }
 const tigerPlanet = new Planet(tigerPlanetGLB, tigerScale,tigerPosition)
     scene.add(tigerPlanet.planet.scene)
+ tigerPlanet.planet.scene.getWorldPosition(musicWp)
+      planetInitData.push({object: tigerPlanet.planet.scene, worldPosition: musicWp})
+      console.log(planetInitData)
 const orbitObject = new THREE.Object3D;
      scene.add(orbitObject)
 orbitObject.position.set(-1.5,-1.5,1.3)
@@ -95,6 +108,9 @@ const maroonPlanetPosition = {
 }
 const maroonPlanet =new Planet(maroonPlanetglb,maroonPlanetScale,maroonPlanetPosition)
       scene.add(maroonPlanet.planet.scene)
+ const contactWp = new THREE.Vector3();
+      maroonPlanet.planet.scene.getWorldPosition(contactWp)
+      planetInitData.push({object: maroonPlanet.planet.scene, worldPosition: contactWp})
 //planets^^
 
 
