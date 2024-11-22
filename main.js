@@ -329,6 +329,12 @@ function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
     console.error("Font not loaded yet!");
     return;
   }
+function moveText(planetText){
+
+  planetText = maroonPlanet.planet.scene
+  console.log(planetText)
+
+}
 
   // Create the geometry for the text
   const textGeometry = new TextGeometry(text, {
@@ -476,7 +482,12 @@ function launchPlanet(planet,planetEndPosition,cameraEndPosition, cameraLookAt, 
   
 
 }
+function moveText(planetText){
 
+  planetText = maroonPlanet.planet.scene
+  console.log(planetText)
+
+}
 function showBackRock(position, offset = new THREE.Vector3()){
   //maybe dont need to set offset like that with new launchPlanet format.
   backRock.position.set(position.x +offset.x ,position.y +offset.y  ,position.z +offset.z)
