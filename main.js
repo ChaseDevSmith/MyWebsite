@@ -215,7 +215,7 @@ rPointsGeo.setAttribute('position', new THREE.BufferAttribute(ringGeo.attributes
 scene.add(firstRing)
 //// back rockkkk
 const backRockGeo = new THREE.SphereGeometry(0.1,32,32);
-const backRockNewGeo = new THREE
+// const backRockNewGeo = new THREE
 const backRockMat = new THREE.MeshBasicMaterial({color: 0xffff00})
 const backRock = new THREE.Mesh(backRockGeo,backRockMat);
 scene.add(backRock)
