@@ -7,13 +7,22 @@ import { TTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/j
 import { FontLoader } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/FontLoader.js';
 import { initScene } from '/init.js';
 import {Planet} from '/planets.js'
+
 console.log("ver", THREE.REVISION);
 
 ///scene init, camera init, light init
 let {camera, scene, renderer, controlsEnabled, controls} = initScene()
+
 //loaders 
-const loader = new GLTFLoader();
 const toggleButton = document.getElementById('toggle-controls');
+const loader = new GLTFLoader();
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+const initialCameraPosition = camera.position.clone();
+
+
+let planetInitData = []
+
 
 //load planets
 const monkeyGLB = await loader.loadAsync("/assets/Monkey D. Blender.glb")
@@ -205,6 +214,13 @@ const firstRing = new THREE.Points(rPointsGeo,wholeNoteMat )
 rPointsGeo.setAttribute('position', new THREE.BufferAttribute(ringGeo.attributes.position.array,3))
 
 scene.add(firstRing)
+//// back rockkkk
+const backRockGeo = new THREE.SphereGeometry(0.1,32,32);
+const backRockNewGeo = new THREE
+const backRockMat = new THREE.MeshBasicMaterial({color: 0xffff00})
+const backRock = new THREE.Mesh(backRockGeo,backRockMat);
+scene.add(backRock)
+backRock.visible = false;
 
 
 
@@ -337,19 +353,189 @@ function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
   console.log(`Text placed at: ${textMesh.position.x}, ${textMesh.position.y}, ${textMesh.position.z}, ${textMesh.name}`);
 }
 
-function moveCamera(targetPlanet){
-  const planetPosition = targetPlanet.position.clone()
-  const targetCameraPosition = targetPlanet.close().add(new THREE.Vector3(0,0,5));
 
   
+
+
+
+///projectCamlookat storage lol 0.591670062331277,5.406932019368488,-1.0774300067032505
+const projectCamLookAt = new THREE.Vector3(2.5669673011128603, 
+  3,
+  -1.700849382757599)
+///heald prokect cam end 2.3477631473771123, 1.4765293806729867, 3.240691339724009-----BEST ONE SO FAR---- 2.1579061291178214,  0.9170801420241994, 1.2498683907279364
+const projectCamEnd = new THREE.Vector3(  2.197789476858504,  1.1201647000000012, 0.9621730551811336)
+const projectBaclRockPos = new THREE.Vector3(1.0791670062331277,  5.06932019368488, -1.0774300067032505)
+//held porjectEndPos 3.082323201479494,  3.854308316854188, -1.08998659916984442--- 0.5669673011128603, 2.0157311506661073,-3.700849382757599
+const projectEndPos = new THREE.Vector3( 3.669673011128603, 
+  5,
+  -1.700849382757599) 
+const purpleOffset = new THREE.Vector3(0,0,0)
+
+
+//------PROJECT PLANET MOVESTATS
+//projectCamlookat storage lol 0.591670062331277,5.406932019368488,-1.0774300067032505
+const gomuCamLookAt = new THREE.Vector3(-1.7326927573614003,  -0.554746152235827,  -4.90009448836733)
+//// gomu cam end sabe/-3.3827450884620736,  -0.36571909988491136, 1.579889478963024----BETTER----0.9422707208646721,  -0.8493511332371845, -1.057894239940426-
+const gomuCamEnd = new THREE.Vector3( -1.232968674275519,  0.192002716033421, -1.0703810353568932)
+
+const gomuBaclRockPos = new THREE.Vector3(  -2.9326927573614003,  1.254746152235827,  -4.40009448836733)
+//end pos save -2.967721792029532, 2.5324021833839303,  -2.128918451046548 
+const gomuEndPos = new THREE.Vector3(  -1.9326927573614003,  0.9254746152235827,  -4.70009448836733 ) 
+const gomuOffset = new THREE.Vector3(0,0,0)
+
+//------CONTACT PLANET MOVESTATS
+//projectCamlookat storage lol 0.591670062331277,5.406932019368488,-1.0774300067032505
+const contactCamLookAt = new THREE.Vector3(-2.2181558775303993, 1.0331468446312923, -3.0112621993613486)
+const contactCamEnd = new THREE.Vector3( -2.4233104995951678,  0.23117295724910703,  0.0485703005223230)
+const contactBaclRockPos = new THREE.Vector3(-3.402181558775303993, 2.9331468446312923, -3.0112621993613486)
+/// end pos save! -2.2181558775303993, 2.9331468446312923, -3.0112621993613486
+const contactEndPos = new THREE.Vector3( -2.02181558775303993, 2.9331468446312923, -3.0112621993613486) 
+const contactOffset = new THREE.Vector3(0,0,0)
+
+
+function onMouseOrTouch(event) {
+  // Normalize mouse/touch coordinates
+  const x = event.clientX || event.touches[0]?.clientX; 
+  const y = event.clientY || event.touches[0]?.clientY;
+  
+  if (!x || !y) return; // Make sure there is a valid x and y coordinate
+  
+  mouse.x = (x / window.innerWidth) * 2 - 1;
+  mouse.y = -(y / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObjects(scene.children);
+  
+
+  if (intersects.length > 0) {
+    const clickedObject = intersects[0].object;
+    console.log('Clicked on:', clickedObject);
+    console.log('Clicked object UUID:', clickedObject.uuid);
+    console.log("position of clicked obj", clickedObject.position)
+
+    // Prevent the camera from being moved if it's already in a transition
+    if (clickedObject.uuid === tigerPlanet.planet.scene.children[0].uuid) {
+      launchPlanet(tigerPlanet.planet.scene,projectEndPos,projectCamEnd,projectCamLookAt,projectBaclRockPos,purpleOffset)
+
+    } else if (clickedObject.uuid === maroonPlanet.planet.scene.children[0].uuid) {
+        console.log("contacts!!!!! good job babyboy!!")
+        launchPlanet(maroonPlanet.planet.scene,contactEndPos,contactCamEnd,contactCamLookAt,contactBaclRockPos,contactOffset);
+        console.log("RUNNING CONSOLE LOG PLANET SCENE BELOW")
+        moveText(maroonPlanet.planet.scene);
+        // maroonPlanet.planet.scene.rotateY(9)
+
+    } else if (clickedObject.uuid === purplePlanet.planet.scene.children[0].uuid) {
+      console.log("PROJECTS!!!!! good job babyboy!!")
+    launchPlanet(purplePlanet.planet.scene,gomuEndPos,gomuCamEnd,gomuCamLookAt,gomuBaclRockPos,gomuOffset)
+
+
+}else if (clickedObject.uuid === blueMoon.planet.scene.children[0].uuid) {
+  console.log("PROJECTS!!!!! good job babyboy!!")
+resetCamera();
+resetPlanets();
+
 }
+  }
+
+}
+
+
+
+function launchPlanet(planet,planetEndPosition,cameraEndPosition, cameraLookAt, backPointPosition, offset){
+  controls.target.set(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
+  console.log("Camera target set to:", cameraLookAt);  // move object to a certain plantet end point position.x.y.z etc w gsap 2.3477631473771123, y: 1.4765293806729867, z: 3.240691339724009??
+  gsap.to(planet.position, {
+    x: planetEndPosition.x,
+    y: planetEndPosition.y,
+    z: planetEndPosition.z,
+    duration: 2,
+    ease: 'power2.inOut',
+    onUpdate:()=>{
+      gsap.to(camera.position, {
+        x:cameraEndPosition.x,
+        y:cameraEndPosition.y,
+        z:cameraEndPosition.z,
+        duration: 2,
+        ease:"power2.inOut",
+
+      })
+      console.log(`${planet} ^^^should be planet obj,${planetEndPosition} shold be a planetPosEnd vector,${cameraEndPosition} -----cam end pos ofc, ${cameraLookAt}CAM.LOOKAT, ${backPointPosition}BACLPOINTPOS, ${offset}OFFSETTT`)
+    }
+    ,
+    onComplete: ()=>{
+      console.log("GETTING CLOSERRRRR YES <3 STARTING TO MOVE CAM");
+      
+    
+      
+    },
+
+  },
+ 
+  )
+  showBackRock(backPointPosition, offset);
   
 
+}
 
-function onMouseMove(event){
-  //normalize mouse inputs
-  mouse.x =(event.clientX/window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY /window.innerHeight) *2 +1;
+function showBackRock(position, offset = new THREE.Vector3()){
+  //maybe dont need to set offset like that with new launchPlanet format.
+  backRock.position.set(position.x +offset.x ,position.y +offset.y  ,position.z +offset.z)
+  backRock.visible = true;
+
+  console.log( "hey im RIGHT HERERERE" ,backRock)
+}
+function onRockClick(event){
+  const x = event.clientX || event.touches[0]?.clientX; 
+  const y = event.clientY || event.touches[0]?.clientY;
+  
+  if (!x || !y) return; // Make sure there is a valid x and y coordinate
+  
+  mouse.x = (x / window.innerWidth) * 2 - 1;
+  mouse.y = -(y / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(backRock);
+    if (intersects.length > 0) {
+        event.stopImmediatePropagation(); 
+        resetCamera();
+        resetPlanets();
+        backRock.visible = false;
+    }
+
+
+}
+
+
+function resetCamera(){
+  controls.target.set(0,0,0)
+  gsap.to(camera.position, {
+    x: initialCameraPosition.x,
+    y: initialCameraPosition.y,
+    z: initialCameraPosition.z,
+    duration:2.0,
+    ease:"power3.out"
+  });
+}
+function resetPlanets(){
+  planetInitData.forEach(planetData => {
+    const { object, worldPosition } = planetData;
+    
+    // Animate the planet back to its original world position
+    gsap.to(object.position, {
+      x: worldPosition.x,
+      y: worldPosition.y,
+      z: worldPosition.z,
+      duration: 2,  // Duration of the animation (in seconds)
+      ease: 'power2.inOut',  // Easing function for smooth movement
+      onUpdate: () => {
+        object.updateMatrixWorld(true); // Ensure the world position is updated
+      },
+      onComplete: () => {
+        console.log(`${object.name} reset to initial position`);
+      }
+    });
+  });
+
 
 }
 
