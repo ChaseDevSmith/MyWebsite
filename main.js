@@ -71,6 +71,8 @@ const tigerPosition = {
 }
 const tigerPlanet = new Planet(tigerPlanetGLB, tigerScale,tigerPosition)
     scene.add(tigerPlanet.planet.scene)
+    const musicWp = new THREE.Vector3();
+
  tigerPlanet.planet.scene.getWorldPosition(musicWp)
       planetInitData.push({object: tigerPlanet.planet.scene, worldPosition: musicWp})
       console.log(planetInitData)
@@ -567,7 +569,7 @@ function resetPlanets(){
 }
 
 
-
+console.log("CHASEDEV VER 0.3.98 ")
 
 function animate() {
 
