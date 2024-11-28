@@ -495,25 +495,33 @@ function onMouseOrTouch(event) {
 
     // Prevent the camera from being moved if it's already in a transition
     if (clickedObject.uuid === tigerPlanet.planet.scene.children[0].uuid) {
-      launchPlanet(tigerPlanet.planet.scene,projectEndPos,projectCamEnd,projectCamLookAt,projectBaclRockPos,purpleOffset)
+      controls.enabled = false;
+
+      launchPlanet(tigerPlanet.planet.scene,projectEndPos,projectCamEnd,projectCamLookAt,projectBaclRockPos,purpleOffset,"music")
 
     } else if (clickedObject.uuid === maroonPlanet.planet.scene.children[0].uuid) {
         console.log("contacts!!!!! good job babyboy!!")
-        launchPlanet(maroonPlanet.planet.scene,contactEndPos,contactCamEnd,contactCamLookAt,contactBaclRockPos,contactOffset);
+        controls.enabled = false;
+        launchPlanet(maroonPlanet.planet.scene,contactEndPos,contactCamEnd,contactCamLookAt,contactBaclRockPos,contactOffset,"contact");
         console.log("RUNNING CONSOLE LOG PLANET SCENE BELOW")
         moveText(maroonPlanet.planet.scene);
+        
         // maroonPlanet.planet.scene.rotateY(9)
 
     } else if (clickedObject.uuid === purplePlanet.planet.scene.children[0].uuid) {
       console.log("PROJECTS!!!!! good job babyboy!!")
-    launchPlanet(purplePlanet.planet.scene,gomuEndPos,gomuCamEnd,gomuCamLookAt,gomuBaclRockPos,gomuOffset)
+      controls.enabled = false;
+
+      
+    launchPlanet(purplePlanet.planet.scene,gomuEndPos,gomuCamEnd,gomuCamLookAt,gomuBaclRockPos,gomuOffset,"project")
 
 
 }else if (clickedObject.uuid === blueMoon.planet.scene.children[0].uuid) {
+
   console.log("PROJECTS!!!!! good job babyboy!!")
 resetCamera();
 resetPlanets();
-        toggleBackgroundColor();
+resetPlanetRotation();
 
 }
   }
@@ -522,21 +530,22 @@ resetPlanets();
 
 
 
-function launchPlanet(planet,planetEndPosition,cameraEndPosition, cameraLookAt, backPointPosition, offset){
+
+function launchPlanet(planet,planetEndPosition,cameraEndPosition, cameraLookAt, backPointPosition, offset, section){
   controls.target.set(cameraLookAt.x, cameraLookAt.y, cameraLookAt.z);
   console.log("Camera target set to:", cameraLookAt);  // move object to a certain plantet end point position.x.y.z etc w gsap 2.3477631473771123, y: 1.4765293806729867, z: 3.240691339724009??
   gsap.to(planet.position, {
     x: planetEndPosition.x,
     y: planetEndPosition.y,
     z: planetEndPosition.z,
-    duration: 2,
+    duration: 1.25,
     ease: 'power2.inOut',
     onUpdate:()=>{
       gsap.to(camera.position, {
         x:cameraEndPosition.x,
         y:cameraEndPosition.y,
         z:cameraEndPosition.z,
-        duration: 2,
+        duration: 1,
         ease:"power2.inOut",
 
       })
@@ -545,22 +554,21 @@ function launchPlanet(planet,planetEndPosition,cameraEndPosition, cameraLookAt, 
     ,
     onComplete: ()=>{
       console.log("GETTING CLOSERRRRR YES <3 STARTING TO MOVE CAM");
+      gsap.delayedCall(1, () => {  // Delay of 2 seconds (after planet movement is done)
+        const sectionElement = document.getElementById(section);
+        if (sectionElement) {
+          sectionElement.style.display = 'block'; // Show the targeted section
+        }
+      });
       
-    
-      
-    },
+    },    
+
 
   },
  
   )
   showBackRock(backPointPosition, offset);
   
-
-}
-function moveText(planetText){
-
-  planetText = maroonPlanet.planet.scene
-  console.log(planetText)
 
 }
 function showBackRock(position, offset = new THREE.Vector3()){
@@ -585,10 +593,47 @@ function onRockClick(event){
         event.stopImmediatePropagation(); 
         resetCamera();
         resetPlanets();
+        hideAllText();
         backRock.visible = false;
+        controls.enabled = true;
     }
 
 
+}
+
+
+let hiddenElements = [];
+let textTimeout;
+
+function hideAllText() {
+
+  const textElements = document.querySelectorAll('.overlay');
+  
+  textElements.forEach(element => {
+      element.style.display = 'none';  
+  });
+
+ 
+  if (textTimeout) {
+    clearTimeout(textTimeout);
+  }
+}
+
+function restoreTextElements() {
+  hiddenElements.forEach(item => {
+    item.element.style.display = item.display || 'block'; 
+  });
+  hiddenElements = []; 
+}
+
+function resetPlanetRotation() {
+  planetInitData.forEach(planetData => {
+      const planetObject = planetData.object;
+      const initialRotation = planetData.initialRotation;
+
+      // Reset rotation to initial rotation
+      planetObject.rotation.copy(initialRotation);
+  });
 }
 
 
@@ -625,12 +670,56 @@ function resetPlanets(){
 
 }
 
+let rotationSpeed = - 0.0002; // Speed of rotation
+let lastTouchY = 0; // For tracking touch scroll position
 
-console.log("CHASEDEV VER 0.3.98 ")
+// Handle desktop scroll (wheel event)
+function onWheel(event) {
+    const delta = event.deltaY; // Positive for scrolling down, negative for up
+    newTorusMesh.rotation.z += delta * rotationSpeed; // Rotate parent on Y-axis based on scroll input
+    tigerPlanet.planet.scene.rotation.z += delta * rotationSpeed; // Rotate parent on Y-axis based on scroll input
+
+}
+// Handle mobile scroll (touch events)
+function onTouchStart(event) {
+    // For touch, we track the initial touch position
+    if (event.touches.length === 1) {
+        lastTouchY = event.touches[0].clientY;
+    }
+}
+function onTouchMove(event) {
+    if (event.touches.length === 1) {
+        const touchY = event.touches[0].clientY;
+        const delta = touchY - lastTouchY; // Vertical movement of the finger
+        newTorusMesh.rotation.z += delta * rotationSpeed * 0.1; // Adjust the factor for sensitivity
+        lastTouchY = touchY; // Update last touch position
+    }
+}
+
+// Add event listeners
+if ('ontouchstart' in window) {
+    // Mobile
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+} else {
+    // Desktop
+    window.addEventListener('wheel', onWheel, { passive: true });
+}
+
 
 function animate() {
 
-renderer.render(scene, camera);
+  renderer.render(scene, camera);
+  
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+  const canvas = renderer.domElement;
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+ 
   newTorusMesh.rotation.z += 0.0006;
   firstRing.rotation.z += 0.0007;
   sixthRing.rotation.z += 0.0012;
@@ -639,17 +728,16 @@ renderer.render(scene, camera);
   orbitObject.rotation.y += 0.0019;
   orbitObject.rotation.x += 0.0019;
   if (controlsEnabled) {
-    controls.update();  
+    controls.update(); 
+
   } else {
     controls.update();
   }
   if (!controlsEnabled) {
     controls.enabled = false;  
   }
-
-
 }
-renderer.setAnimationLoop( animate );
-
+renderer.setAnimationLoop(animate);
+console.log("CHASEDEV VER 0.6.0 ")
 
 
