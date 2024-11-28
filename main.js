@@ -677,8 +677,7 @@ let lastTouchY = 0; // For tracking touch scroll position
 // Handle desktop scroll (wheel event)
 function onWheel(event) {
     const delta = event.deltaY; // Positive for scrolling down, negative for up
-    newTorusMesh.rotation.z += delta * rotationSpeed; // Rotate parent on Y-axis based on scroll input
-    tigerPlanet.planet.scene.rotation.z += delta * rotationSpeed; // Rotate parent on Y-axis based on scroll input
+    newTorusMesh.rotation.z += delta * rotationSpeed; 
 
 }
 // Handle mobile scroll (touch events)
