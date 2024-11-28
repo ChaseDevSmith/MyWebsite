@@ -15,6 +15,7 @@ let {camera, scene, renderer, controlsEnabled, controls} = initScene()
 //loaders 
 const toggleButton = document.getElementById('toggle-controls');
 const loadingManager = new LoadingManager();
+console.log(loadingManager)
 const loader = new GLTFLoader(loadingManager);
 const raycaster = new THREE.Raycaster();
 const initialCameraPosition = camera.position.clone();
@@ -245,12 +246,7 @@ const progressBar = document.getElementById("progress-bar");
 let totalAssetsToLoad = 0;
 let assetsLoaded = 0;
 
-loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
-  totalAssetsToLoad = itemsTotal; 
-  console.log('Loading started. Total assets to load:', totalAssetsToLoad);
-  document.body.style.overflow = 'hidden'; // Disable scroll
-  progressBarContainer.style.display = 'flex'; 
-};
+
 scene.background = new THREE.Color(0x03042E); 
 renderer.setClearColor(0x03042E, 1);
 // scene.background = new THREE.Color(0x121212);  ///////// Dark charcoal gray
@@ -276,6 +272,12 @@ function toggleBackgroundColor() {
 
   renderer.setClearColor(newColor, 1);  // Full opacity
 }
+loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
+  totalAssetsToLoad = itemsTotal; 
+  console.log('Loading started. Total assets to load:', totalAssetsToLoad);
+  document.body.style.overflow = 'hidden'; // Disable scroll
+  progressBarContainer.style.display = 'flex'; 
+};
 
 loadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
   const progress = (itemsLoaded / itemsTotal) * 100;
@@ -380,9 +382,9 @@ window.addEventListener('touchstart', onMouseOrTouch, false);
                
             }
         }
-const fontLoader = new FontLoader();
+const fontLoader = new FontLoader(loadingManager);
 let jetFont
-const ttfLoader = new TTFLoader();
+const ttfLoader = new TTFLoader(loadingManager);
 ttfLoader.load("assets/fonts/JetBrainsMono-SemiBold.ttf",(json)=>{
 
 
@@ -705,7 +707,16 @@ if ('ontouchstart' in window) {
     // Desktop
     window.addEventListener('wheel', onWheel, { passive: true });
 }
-
+function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
 
 function animate() {
 
