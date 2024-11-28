@@ -7,18 +7,19 @@ import { TTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/j
 import { FontLoader } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/FontLoader.js';
 import { initScene } from '/init.js';
 import {Planet} from '/planets.js'
-
-console.log("ver", THREE.REVISION);
+import { LoadingManager } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';
 
 ///scene init, camera init, light init
 let {camera, scene, renderer, controlsEnabled, controls} = initScene()
 
 //loaders 
 const toggleButton = document.getElementById('toggle-controls');
-const loader = new GLTFLoader();
+const loadingManager = new LoadingManager();
+const loader = new GLTFLoader(loadingManager);
 const raycaster = new THREE.Raycaster();
 const initialCameraPosition = camera.position.clone();
-console.log("ver 0.5.1", THREE.REVISION);
+console.log("ver 0.5.2", THREE.REVISION);
+
 
 
 let planetInitData = []
