@@ -238,6 +238,60 @@ const backRock = new THREE.Mesh(backRockGeo,backRockMat);
 scene.add(backRock)
 backRock.visible = false;
 
+//loading screen logic
+const progressBar = document.getElementById("progress-bar");
+let totalAssetsToLoad = 0;
+let assetsLoaded = 0;
+
+loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
+  totalAssetsToLoad = itemsTotal; 
+  console.log('Loading started. Total assets to load:', totalAssetsToLoad);
+  document.body.style.overflow = 'hidden'; // Disable scroll
+  progressBarContainer.style.display = 'flex'; 
+};
+scene.background = new THREE.Color(0x03042E); 
+renderer.setClearColor(0x03042E, 1);
+// scene.background = new THREE.Color(0x121212);  ///////// Dark charcoal gray
+// renderer.setClearColor(0x121212, 1); 
+// scene.background = new THREE.Color(0x1D1B47);  //////Dark purple
+// renderer.setClearColor(0x1D1B47, 1); 
+
+let currentColorIndex = 0;
+const colors = [
+  0x03042E,  // Space Blue 
+  0x000000,  // black
+  0xFFFFFF,  // brightwhite
+  0xF4E1C1   // sheetmusic
+];
+
+function toggleBackgroundColor() {
+  // reset if it exceeds the length of the array
+  currentColorIndex = (currentColorIndex + 1) % colors.length;
+
+  const newColor = colors[currentColorIndex];
+
+  scene.background = new THREE.Color(newColor);
+
+  renderer.setClearColor(newColor, 1);  // Full opacity
+}
+
+loadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+  const progress = (itemsLoaded / itemsTotal) * 100;
+  progressBar.value = progress;
+  console.log(`Loading: ${progress}% - Loaded ${itemsLoaded} of ${itemsTotal}`);
+};
+
+
+const progressBarContainer = document.querySelector('.progress-bar-container');
+loadingManager.onLoad = function () {
+  console.log('All assets loaded');
+  console.log("ok")
+  progressBarContainer.style.display = 'none';
+ 
+  
+  renderer.setSize( window.innerWidth, window.innerHeight );
+};
+
 
 
 //moving planets
@@ -457,6 +511,7 @@ function onMouseOrTouch(event) {
   console.log("PROJECTS!!!!! good job babyboy!!")
 resetCamera();
 resetPlanets();
+        toggleBackgroundColor();
 
 }
   }
