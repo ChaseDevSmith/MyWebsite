@@ -16,6 +16,7 @@ let {camera, scene, renderer, controlsEnabled, controls} = initScene()
 const toggleButton = document.getElementById('toggle-controls');
 const loadingManager = new LoadingManager();
 console.log(loadingManager)
+const initialCameraPosition = camera.position.clone();
 const loader = new GLTFLoader(loadingManager);
 const raycaster = new THREE.Raycaster();
 const initialCameraPosition = camera.position.clone();
@@ -25,8 +26,6 @@ console.log("ver 0.5.2", THREE.REVISION);
 
 let planetInitData = []
 
-
-//load planets
 const monkeyGLB = await loader.loadAsync("assets/trueHead.glb")
 const monkeyScale ={x:1,y:1,z:1}
 const monkeyPosition = {
@@ -36,11 +35,11 @@ const monkeyPosition = {
 }
 const monkey = new Planet(monkeyGLB,monkeyScale,monkeyPosition)
       scene.add(monkey.planet.scene)
-const monkeyWp = new THREE.Vector3();
+     const monkeyWp = new THREE.Vector3();
       monkey.planet.scene.getWorldPosition(monkeyWp)
       planetInitData.push({object: monkey.planet.scene, worldPosition: monkeyWp})
       console.log(planetInitData)
-const purplePlanetglb = await loader.loadAsync('/assets/PURPLEPLANET.glb');
+const purplePlanetglb = await loader.loadAsync('assets/PURPLEPLANET.glb');
 const purpleScale = {
   x : .7,
   y : .7,
@@ -52,14 +51,17 @@ const purplePosition = {
   z : 1.3
 }
 const purplePlanet = new Planet(purplePlanetglb,purpleScale,purplePosition)
+//can be made better myb
      scene.add(purplePlanet.planet.scene)
-const ppWp = new THREE.Vector3();
+    
+    const ppWp = new THREE.Vector3();
+    const ppinitialRotation = purplePlanet.planet.scene.rotation.clone();
     purplePlanet.planet.scene.getWorldPosition(ppWp)
     console.log('Project planet world position:', ppWp);
-    planetInitData.push({object: purplePlanet.planet.scene, worldPosition: ppWp})
+    planetInitData.push({object: purplePlanet.planet.scene, worldPosition: ppWp ,initialRotation:ppinitialRotation})
     console.log("updated initial position array w purple planet",planetInitData)
 
-const tigerPlanetGLB = await loader.loadAsync( "/assets/TiggerPlanet.glb")
+const tigerPlanetGLB = await loader.loadAsync( "assets/TiggerPlanet.glb")
 const tigerScale = {
   
   x : .7,
@@ -75,14 +77,14 @@ const tigerPosition = {
 const tigerPlanet = new Planet(tigerPlanetGLB, tigerScale,tigerPosition)
     scene.add(tigerPlanet.planet.scene)
     const musicWp = new THREE.Vector3();
-
- tigerPlanet.planet.scene.getWorldPosition(musicWp)
-      planetInitData.push({object: tigerPlanet.planet.scene, worldPosition: musicWp})
+      tigerPlanet.planet.scene.getWorldPosition(musicWp)
+      const mInitalRotation = tigerPlanet.planet.scene.rotation.clone();
+      planetInitData.push({object: tigerPlanet.planet.scene, worldPosition: musicWp , initialRotation: mInitalRotation})
       console.log(planetInitData)
 const orbitObject = new THREE.Object3D;
      scene.add(orbitObject)
 orbitObject.position.set(-1.5,-1.5,1.3)
-const blueMoonglb = await loader.loadAsync('/assets/blueMoonWithDarkBlueSpots.glb');
+const blueMoonglb = await loader.loadAsync('assets/blueMoonWithDarkBlueSpots.glb');
 const blueMoonScale = {
   
   x : .7,
@@ -98,7 +100,7 @@ const blueMoonPosition = {
 const blueMoon = new Planet(blueMoonglb,blueMoonScale,blueMoonPosition)
 //empty obj
      orbitObject.add(blueMoon.planet.scene)
-const maroonPlanetglb = await loader.loadAsync("/assets/maroonPlanet.glb");
+const maroonPlanetglb = await loader.loadAsync("assets/maroonPlanet.glb");
 const maroonPlanetScale = {
   
   x : .7,
@@ -107,15 +109,18 @@ const maroonPlanetScale = {
 }
 const maroonPlanetPosition = {
   // -3,3,-3
-  x : -3,
+  x : -2,
   y : 3,
-  z : -3
+  z : -.37
 }
 const maroonPlanet =new Planet(maroonPlanetglb,maroonPlanetScale,maroonPlanetPosition)
       scene.add(maroonPlanet.planet.scene)
- const contactWp = new THREE.Vector3();
+      console.log("DEBIGGING AGAINNNNNN" ,maroonPlanet.planet.scene)
+      const contactWp = new THREE.Vector3();
       maroonPlanet.planet.scene.getWorldPosition(contactWp)
-      planetInitData.push({object: maroonPlanet.planet.scene, worldPosition: contactWp})
+      const maroonInitialRotation = maroonPlanet.planet.scene.rotation.clone();
+      planetInitData.push({object: maroonPlanet.planet.scene, worldPosition: contactWp ,initialRotation:maroonInitialRotation})
+      console.log(planetInitData)
 //planets^^
 
 
@@ -749,6 +754,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.6.7 ")
+console.log("CHASEDEV VER 0.6.9 ")
 
 
