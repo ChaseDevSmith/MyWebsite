@@ -550,7 +550,7 @@ function launchPlanet(planet,planetEndPosition,cameraEndPosition, cameraLookAt, 
         ease:"power2.inOut",
 
       })
-      console.log(`${planet} ^^^should be planet obj,${planetEndPosition} shold be a planetPosEnd vector,${cameraEndPosition} -----cam end pos ofc, ${cameraLookAt}CAM.LOOKAT, ${backPointPosition}BACLPOINTPOS, ${offset}OFFSETTT`)
+      // console.log(`${planet} ^^^should be planet obj,${planetEndPosition} shold be a planetPosEnd vector,${cameraEndPosition} -----cam end pos ofc, ${cameraLookAt}CAM.LOOKAT, ${backPointPosition}BACLPOINTPOS, ${offset}OFFSETTT`)
     }
     ,
     onComplete: ()=>{
@@ -748,6 +748,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.7.0 ")
+console.log("CHASEDEV VER 0.7.1 ")
 
 
