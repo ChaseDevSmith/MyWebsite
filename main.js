@@ -19,7 +19,6 @@ console.log(loadingManager)
 const initialCameraPosition = camera.position.clone();
 const loader = new GLTFLoader(loadingManager);
 const raycaster = new THREE.Raycaster();
-const initialCameraPosition = camera.position.clone();
 console.log("ver 0.5.2", THREE.REVISION);
 
 
