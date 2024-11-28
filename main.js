@@ -749,6 +749,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.6.0 ")
+console.log("CHASEDEV VER 0.6.7 ")
 
 
