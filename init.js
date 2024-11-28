@@ -9,7 +9,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 const light = new THREE.DirectionalLight(0x404040, 500);
-const light2 = new THREE.HemisphereLight(0x404040, 0x404040, 3);
+const light2 = new THREE.HemisphereLight(0x404040, 0x404040, 7);
 const light4 = new THREE.AmbientLight(0xffffff, 1);
 scene.add( light, light2 ,);
 //orbit controls

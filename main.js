@@ -24,7 +24,7 @@ let planetInitData = []
 
 
 //load planets
-const monkeyGLB = await loader.loadAsync("/assets/Monkey D. Blender.glb")
+const monkeyGLB = await loader.loadAsync("assets/trueHead.glb")
 const monkeyScale ={x:1,y:1,z:1}
 const monkeyPosition = {
   x:0, 
@@ -336,7 +336,7 @@ ttfLoader.load("assets/fonts/JetBrainsMono-SemiBold.ttf",(json)=>{
    createText("MUSIC", tigerPlanet.planet.scene, new THREE.Vector3(-2.4,-1,0) );
    createText("CONTACT", maroonPlanet.planet.scene, new THREE.Vector3(2,-2,4))
   //  createText("howdy", blueMoon.planet.scene, new THREE.Vector3(-3,0,-1))
-  createText("about me", monkey.planet.scene, new THREE.Vector3(-1,-.5,0.77))
+  createText("about me", monkey.planet.scene, new THREE.Vector3(-1,-1,0.77))
 
 
  
