@@ -18,6 +18,7 @@ const toggleButton = document.getElementById('toggle-controls');
 const loader = new GLTFLoader();
 const raycaster = new THREE.Raycaster();
 const initialCameraPosition = camera.position.clone();
+console.log("ver 0.5.1", THREE.REVISION);
 
 
 let planetInitData = []
