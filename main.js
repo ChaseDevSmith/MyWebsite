@@ -19,7 +19,7 @@ console.log(loadingManager)
 const initialCameraPosition = camera.position.clone();
 const loader = new GLTFLoader(loadingManager);
 const raycaster = new THREE.Raycaster();
-console.log("ver 0.5.2", THREE.REVISION);
+console.log("three.js version:", THREE.REVISION);
 
 
 
@@ -747,6 +747,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.7.1 ")
+console.log("CHASEDEV VER 0.8.1 ")
 
 
