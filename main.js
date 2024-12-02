@@ -110,7 +110,7 @@ const maroonPlanetPosition = {
   // -3,3,-3
   x : -2,
   y : 3,
-  z : -.37
+  z : .37
 }
 const maroonPlanet =new Planet(maroonPlanetglb,maroonPlanetScale,maroonPlanetPosition)
       scene.add(maroonPlanet.planet.scene)
@@ -395,7 +395,7 @@ ttfLoader.load("assets/fonts/JetBrainsMono-SemiBold.ttf",(json)=>{
    console.log("*font voice*---im in");
    createText("projects", purplePlanet.planet.scene, new THREE.Vector3(1.8,2,-.6));
    createText("MUSIC", tigerPlanet.planet.scene, new THREE.Vector3(-2.4,-1,0) );
-   createText("CONTACT", maroonPlanet.planet.scene, new THREE.Vector3(2,-3,1.8))
+   createText("CONTACT", maroonPlanet.planet.scene, new THREE.Vector3(2,-3,2.54))
   //  createText("howdy", blueMoon.planet.scene, new THREE.Vector3(-3,0,-1))
   createText("about me", monkey.planet.scene, new THREE.Vector3(-1,-1,0.77))
 
