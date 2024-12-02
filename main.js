@@ -110,7 +110,7 @@ const maroonPlanetPosition = {
   // -3,3,-3
   x : -2,
   y : 3,
-  z : .37
+  z : -.37
 }
 const maroonPlanet =new Planet(maroonPlanetglb,maroonPlanetScale,maroonPlanetPosition)
       scene.add(maroonPlanet.planet.scene)
@@ -251,8 +251,8 @@ let totalAssetsToLoad = 0;
 let assetsLoaded = 0;
 
 
-scene.background = new THREE.Color(0x03042E); 
-renderer.setClearColor(0x03042E, 1);
+scene.background = new THREE.Color(0x121212); 
+renderer.setClearColor(0x121212, 1);
 
 
 let currentColorIndex = 0;
@@ -262,7 +262,10 @@ const colors = [
   0x76697E,  // brightwhite
   0xF4E1C1,   // sheetmusic
   0x121212, //charcoal gray
-    0x1D1B47, //dark purpleeeeeee
+    0x1D1B47,//dark purpleeeeeee
+    0xa0d8a0, //greeenn
+    0xb4dbf2,//some blue i think
+    0xf1b5c1,// pinkkkk
 ];
 
 function toggleBackgroundColor() {
@@ -399,6 +402,7 @@ ttfLoader.load("assets/fonts/JetBrainsMono-SemiBold.ttf",(json)=>{
   //  createText("howdy", blueMoon.planet.scene, new THREE.Vector3(-3,0,-1))
   createText("about me", monkey.planet.scene, new THREE.Vector3(-1,-1,0.77))
 
+  createBackText();
 
  
 
@@ -408,6 +412,22 @@ function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
     console.error("Font not loaded yet!");
     return;
   }
+    function createBackText() {
+  const backGeometry = new TextGeometry("BACK <<<<", {
+    font: jetFont,   
+    size: 0.07,       
+    depth:0.02
+  });
+
+  const textMaterial = new THREE.MeshBasicMaterial({ color: 0xFFD700 });  // Gold color
+  const backTextMesh = new THREE.Mesh(backGeometry, textMaterial);
+
+
+  backTextMesh.position.set(-.2, 0.2, 0);  
+
+  // Add the "BACK" text as a child of the backRock
+  backRock.add(backTextMesh);
+}
 function moveText(planetText){
 
   planetText = maroonPlanet.planet.scene
@@ -747,6 +767,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9 ")
+console.log("CHASEDEV VER 0.9.1 ")
 
 
