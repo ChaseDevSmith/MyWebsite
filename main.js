@@ -253,17 +253,16 @@ let assetsLoaded = 0;
 
 scene.background = new THREE.Color(0x03042E); 
 renderer.setClearColor(0x03042E, 1);
-// scene.background = new THREE.Color(0x121212);  ///////// Dark charcoal gray
-// renderer.setClearColor(0x121212, 1); 
-// scene.background = new THREE.Color(0x1D1B47);  //////Dark purple
-// renderer.setClearColor(0x1D1B47, 1); 
+
 
 let currentColorIndex = 0;
 const colors = [
   0x03042E,  // Space Blue 
   0x000000,  // black
-  0xFFFFFF,  // brightwhite
-  0xF4E1C1   // sheetmusic
+  0x76697E,  // brightwhite
+  0xF4E1C1,   // sheetmusic
+  0x121212, //charcoal gray
+    0x1D1B47, //dark purpleeeeeee
 ];
 
 function toggleBackgroundColor() {
@@ -274,7 +273,7 @@ function toggleBackgroundColor() {
 
   scene.background = new THREE.Color(newColor);
 
-  renderer.setClearColor(newColor, 1);  // Full opacity
+  renderer.setClearColor(newColor, .7);  // Full opacity ---changed to .7 for style
 }
 loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
   totalAssetsToLoad = itemsTotal; 
@@ -523,6 +522,7 @@ function onMouseOrTouch(event) {
 resetCamera();
 resetPlanets();
 resetPlanetRotation();
+         toggleBackgroundColor() ;
 
 }
   }
@@ -747,6 +747,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.8.1 ")
+console.log("CHASEDEV VER 0.8.5 ")
 
 
