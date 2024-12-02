@@ -635,7 +635,7 @@
   </head>
   <body>
     <div class="progress-bar-container">
-      <label for="progress-bar"> Howdy! LOADING... </label>
+      <label for="progress-bar"> Howdy! loading... </label>
       <progress id ="progress-bar" value="0" max="100"></progress>
     </div>
     <canvas id ="canvas"></canvas>
@@ -644,15 +644,15 @@
    <div class="overlay" id="contact">
     <section>
       <h2>Contact Me!</h2>
-      <p>If you have any questions, feel free to reach out! I'd love to hear from you.</p>
+      <p>Feel free to reach out to me with any questions or comments. I would especially appreciate any feedback from your experience on my Website! </p>
       
       <!-- Contact Form -->
       <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="df622ee3-682e-475e-a72c-0cf156ed65da">
 
         <input type="text" id="name" name="name" placeholder="Your Name" required />
-        <input type="email" id="email" name="email" placeholder="Your Email--not required--"  />
-        <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+        <input type="email" id="email" name="email" placeholder="email-(this is not a newsletter)" required  />
+        <textarea id="message" name="message" placeholder=" Just saying `Howdy` is also encouraged! " rows="4" required></textarea>
         <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
         <button type="submit">Send Message</button>
