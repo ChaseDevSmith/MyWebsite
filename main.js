@@ -407,12 +407,7 @@ ttfLoader.load("assets/fonts/JetBrainsMono-SemiBold.ttf",(json)=>{
  
 
 })
-function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
-  if (!jetFont) {
-    console.error("Font not loaded yet!");
-    return;
-  }
-    function createBackText() {
+function createBackText() {
   const backGeometry = new TextGeometry("BACK <<<<", {
     font: jetFont,   
     size: 0.07,       
@@ -427,6 +422,12 @@ function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
 
   backRock.add(backTextMesh);
 }
+function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
+  if (!jetFont) {
+    console.error("Font not loaded yet!");
+    return;
+  }
+
 function moveText(planetText){
 
   planetText = maroonPlanet.planet.scene
@@ -760,6 +761,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9.2 ")
+console.log("CHASEDEV VER 0.9.25 ")
 
 
