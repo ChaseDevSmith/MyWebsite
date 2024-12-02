@@ -521,7 +521,7 @@ function onMouseOrTouch(event) {
   console.log("PROJECTS!!!!! good job babyboy!!")
 resetCamera();
 resetPlanets();
-resetPlanetRotation();
+// resetPlanetRotation();
          toggleBackgroundColor() ;
 
 }
