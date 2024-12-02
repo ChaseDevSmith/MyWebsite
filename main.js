@@ -425,7 +425,6 @@ function createText(text, planetScene,offset = new THREE.Vector3(0, 2, 0)) {
 
   backTextMesh.position.set(-.2, 0.2, 0);  
 
-  // Add the "BACK" text as a child of the backRock
   backRock.add(backTextMesh);
 }
 function moveText(planetText){
@@ -438,8 +437,8 @@ function moveText(planetText){
   // Create the geometry for the text
   const textGeometry = new TextGeometry(text, {
     font: jetFont,
-    size: 0.28,  // Size of the text
-    depth: 0.01  // Depth of the text
+    size: 0.28, 
+    depth: 0.01  
   
   });
 
@@ -503,7 +502,7 @@ function onMouseOrTouch(event) {
   const x = event.clientX || event.touches[0]?.clientX; 
   const y = event.clientY || event.touches[0]?.clientY;
   
-  if (!x || !y) return; // Make sure there is a valid x and y coordinate
+  if (!x || !y) return; 
   
   mouse.x = (x / window.innerWidth) * 2 - 1;
   mouse.y = -(y / window.innerHeight) * 2 + 1;
@@ -541,7 +540,6 @@ function onMouseOrTouch(event) {
   console.log("PROJECTS!!!!! good job babyboy!!")
 resetCamera();
 resetPlanets();
-// resetPlanetRotation();
          toggleBackgroundColor() ;
 
 }
@@ -575,7 +573,7 @@ function launchPlanet(planet,planetEndPosition,cameraEndPosition, cameraLookAt, 
     ,
     onComplete: ()=>{
       console.log("GETTING CLOSERRRRR YES <3 STARTING TO MOVE CAM");
-      gsap.delayedCall(1, () => {  // Delay of 2 seconds (after planet movement is done)
+      gsap.delayedCall(1, () => {  
         const sectionElement = document.getElementById(section);
         if (sectionElement) {
           sectionElement.style.display = 'block'; // Show the targeted section
@@ -603,7 +601,7 @@ function onRockClick(event){
   const x = event.clientX || event.touches[0]?.clientX; 
   const y = event.clientY || event.touches[0]?.clientY;
   
-  if (!x || !y) return; // Make sure there is a valid x and y coordinate
+  if (!x || !y) return; 
   
   mouse.x = (x / window.innerWidth) * 2 - 1;
   mouse.y = -(y / window.innerHeight) * 2 + 1;
@@ -652,7 +650,6 @@ function resetPlanetRotation() {
       const planetObject = planetData.object;
       const initialRotation = planetData.initialRotation;
 
-      // Reset rotation to initial rotation
       planetObject.rotation.copy(initialRotation);
   });
 }
@@ -672,15 +669,15 @@ function resetPlanets(){
   planetInitData.forEach(planetData => {
     const { object, worldPosition } = planetData;
     
-    // Animate the planet back to its original world position
+ 
     gsap.to(object.position, {
       x: worldPosition.x,
       y: worldPosition.y,
       z: worldPosition.z,
-      duration: 2,  // Duration of the animation (in seconds)
-      ease: 'power2.inOut',  // Easing function for smooth movement
+      duration: 2,  
+      ease: 'power2.inOut',  
       onUpdate: () => {
-        object.updateMatrixWorld(true); // Ensure the world position is updated
+        object.updateMatrixWorld(true);
       },
       onComplete: () => {
         console.log(`${object.name} reset to initial position`);
@@ -702,7 +699,6 @@ function onWheel(event) {
 }
 // Handle mobile scroll (touch events)
 function onTouchStart(event) {
-    // For touch, we track the initial touch position
     if (event.touches.length === 1) {
         lastTouchY = event.touches[0].clientY;
     }
@@ -710,19 +706,16 @@ function onTouchStart(event) {
 function onTouchMove(event) {
     if (event.touches.length === 1) {
         const touchY = event.touches[0].clientY;
-        const delta = touchY - lastTouchY; // Vertical movement of the finger
-        newTorusMesh.rotation.z += delta * rotationSpeed * 0.1; // Adjust the factor for sensitivity
-        lastTouchY = touchY; // Update last touch position
+        const delta = touchY - lastTouchY; 
+        newTorusMesh.rotation.z += delta * rotationSpeed * 0.1; 
+        lastTouchY = touchY; 
     }
 }
 
-// Add event listeners
 if ('ontouchstart' in window) {
-    // Mobile
     window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: true });
 } else {
-    // Desktop
     window.addEventListener('wheel', onWheel, { passive: true });
 }
 function resizeRendererToDisplaySize(renderer) {
@@ -767,6 +760,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9.1 ")
+console.log("CHASEDEV VER 0.9.2 ")
 
 
