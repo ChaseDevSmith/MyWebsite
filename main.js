@@ -126,7 +126,7 @@ const maroonPlanet =new Planet(maroonPlanetglb,maroonPlanetScale,maroonPlanetPos
 
 
 //points
-const tLoader = new THREE.TextureLoader()
+const tLoader = new THREE.TextureLoader(loadingManager)
 
 const blueEight = await tLoader.loadAsync("/assets/blueEigth.png")
 const greenQrest = await tLoader.loadAsync("/assets/quarterRest.png")
