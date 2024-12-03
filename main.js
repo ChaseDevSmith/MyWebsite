@@ -551,7 +551,7 @@ function onMouseOrTouch(event) {
          clickedObject.uuid === monkey.planet.scene.children[2].uuid || 
          clickedObject.uuid === monkey.planet.scene.children[7].uuid || 
          clickedObject.uuid === monkey.planet.scene.children[4].uuid ||
-                 clickedObject.name === "Sphere_2"||
+
               clickedObject.name === "Cube003_1") {
       launchPlanet(monkey.planet.scene, headEndPos, headCamEnd, headCamLookAt, headBaclRockPos, headOffset, "bio");
     }
