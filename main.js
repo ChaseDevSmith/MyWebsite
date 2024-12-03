@@ -526,7 +526,7 @@ function onMouseOrTouch(event) {
     // Prevent the camera from being moved if it's already in a transition
     if (clickedObject.uuid === tigerPlanet.planet.scene.children[0].uuid) {
       controls.enabled = false;
-      launchPlanet(tigerPlanet.planet.scene,projectEndPos,projectCamEnd,projectCamLookAt,projectBaclRockPos,purpleOffset,"music")
+      launchPlanet(tigerPlanet.planet.scene,projectEndPos,projectCamEnd,projectCamLookAt,projectBaclRockPos,purpleOffset,"music");
 
     } else if (clickedObject.uuid === maroonPlanet.planet.scene.children[0].uuid) {
         console.log("contacts!!!!! good job babyboy!!")
@@ -543,13 +543,13 @@ function onMouseOrTouch(event) {
 
 }else if (clickedObject.uuid === blueMoon.planet.scene.children[0].uuid) {
   controls.enabled = false;
-  console.log("PROJECTS!!!!! good job babyboy!!")
+  console.log("PROJECTS!!!!! good job babyboy!!");
 resetCamera();
 resetPlanets();
          toggleBackgroundColor() ;
 
 }else if(clickedObject.uuid === monkey.planet.scene.children[0].uuid){
-        launchPlanet(monkey.planet.scene,headEndPos,headCamEnd,headCamLookAt,headBaclRockPos,headOffset,"bio")
+        launchPlanet(monkey.planet.scene,headEndPos,headCamEnd,headCamLookAt,headBaclRockPos,headOffset,"bio");
 
         
   }
@@ -777,6 +777,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 1.0.0 TESTTTT ");
+console.log("CHASEDEV VER 1.0.1 TESTTTT ");
 
 
