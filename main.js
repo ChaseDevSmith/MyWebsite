@@ -704,7 +704,6 @@ carousel.addEventListener('wheel', (event) => {
    
     carousel.scrollLeft += event.deltaY;
 
-    event.preventDefault(); 
   }
 });
 // Handle mobile scroll (touch events)
@@ -770,6 +769,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9.6 TESTTTT ")
+console.log("CHASEDEV VER 0.9.7 TESTTTT ")
 
 
