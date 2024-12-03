@@ -548,7 +548,7 @@ function onMouseOrTouch(event) {
       toggleBackgroundColor();
     } else if (clickedObject.uuid === monkey.planet.scene.children[8].uuid || 
          clickedObject.uuid === monkey.planet.scene.children[6].uuid || 
-         clickedObject.uuid === monkey.planet.scene.children[9].uuid || 
+         clickedObject.uuid === monkey.planet.scene.children[2].uuid || 
          clickedObject.uuid === monkey.planet.scene.children[7].uuid || 
          clickedObject.uuid === monkey.planet.scene.children[4].uuid) {
       launchPlanet(monkey.planet.scene, headEndPos, headCamEnd, headCamLookAt, headBaclRockPos, headOffset, "bio");
@@ -777,6 +777,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 1.0.5 TESTTTT ");
+console.log("CHASEDEV VER 1.0.6 TESTTTT ");
 
 
