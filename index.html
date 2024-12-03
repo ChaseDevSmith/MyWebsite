@@ -506,6 +506,12 @@
   scroll-snap-type: x mandatory; 
   scroll-behavior: smooth; 
 }
+	    .transparent-card {
+  background-color: transparent;  /* Make it fully transparent */
+  flex: 0 0 15px;  
+ 
+  margin-left: 15px; 
+}
 
 .carousel-card {
   background-color: rgba(0, 0, 0, 0.7);
@@ -524,6 +530,7 @@
   scroll-snap-align: start;  
   margin-left: 40px; 
 }
+	    
 
 .carousel-card:hover {
   transform: translateY(-10px);
@@ -698,6 +705,7 @@
   </div>
   <div class="overlay" id="music">
     <section class="carousel-section">
+	     <div class="carousel-card transparent-card"></div>
       <div class="carousel">
         <!-- Card 1: YouTube Channel -->
         <div class="carousel-card">
