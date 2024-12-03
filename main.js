@@ -538,7 +538,7 @@ function onMouseOrTouch(event) {
 
       launchPlanet(purplePlanet.planet.scene, gomuEndPos, gomuCamEnd, gomuCamLookAt, gomuBaclRockPos, gomuOffset, "project");
 
-    } // <-- Closing brace for `else if (clickedObject.uuid === purplePlanet...)`
+    }
 
     else if (clickedObject.uuid === blueMoon.planet.scene.children[0].uuid) {
       controls.enabled = false;
@@ -546,7 +546,11 @@ function onMouseOrTouch(event) {
       resetCamera();
       resetPlanets();
       toggleBackgroundColor();
-    } else if (clickedObject.uuid === monkey.planet.scene.children[0].uuid) {
+    } else if (clickedObject.uuid === monkey.planet.scene.children[8].uuid || 
+         clickedObject.uuid === monkey.planet.scene.children[6].uuid || 
+         clickedObject.uuid === monkey.planet.scene.children[9].uuid || 
+         clickedObject.uuid === monkey.planet.scene.children[7].uuid || 
+         clickedObject.uuid === monkey.planet.scene.children[4].uuid) {
       launchPlanet(monkey.planet.scene, headEndPos, headCamEnd, headCamLookAt, headBaclRockPos, headOffset, "bio");
     }
 
@@ -773,6 +777,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 1.0.2 TESTTTT ");
+console.log("CHASEDEV VER 1.0.5 TESTTTT ");
 
 
