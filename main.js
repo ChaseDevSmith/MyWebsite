@@ -775,7 +775,7 @@ function animate() {
   if (!controlsEnabled) {
     controls.enabled = false;  
   }
-}
+}}
 renderer.setAnimationLoop(animate);
 console.log("CHASEDEV VER 0.9.9 TESTTTT ")
 
