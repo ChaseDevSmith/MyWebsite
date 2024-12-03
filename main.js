@@ -770,6 +770,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9.5 ")
+console.log("CHASEDEV VER 0.9.5 TESTTTT ")
 
 
