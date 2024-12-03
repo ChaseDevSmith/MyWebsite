@@ -538,7 +538,7 @@ function onMouseOrTouch(event) {
       controls.enabled = false;
 
       
-    launchPlanet(purplePlanet.planet.scene,gomuEndPos,gomuCamEnd,gomuCamLookAt,gomuBaclRockPos,gomuOffset,"project")
+    launchPlanet(purplePlanet.planet.scene,gomuEndPos,gomuCamEnd,gomuCamLookAt,gomuBaclRockPos,gomuOffset,"project");
 
 
 }else if (clickedObject.uuid === blueMoon.planet.scene.children[0].uuid) {
@@ -775,8 +775,8 @@ function animate() {
   if (!controlsEnabled) {
     controls.enabled = false;  
   }
-}}
+}
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9.9 TESTTTT ")
+console.log("CHASEDEV VER 1.0.0 TESTTTT ")
 
 
