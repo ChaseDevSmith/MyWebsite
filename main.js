@@ -460,7 +460,12 @@ function moveText(planetText){
 
 
   
-
+//HEAD
+const headCamLookAt = new THREE.Vector3(0, 2.5, -4.7)
+const headCamEnd = new THREE.Vector3( 0,4,.7)
+const headBaclRockPos = new THREE.Vector3( -1.7, 5, -4)
+const headEndPos = new THREE.Vector3( 0, 4.5, -4) 
+const headOffset = new THREE.Vector3(0,0,0)
 
 
 ///projectCamlookat storage lol 0.591670062331277,5.406932019368488,-1.0774300067032505
@@ -537,13 +542,16 @@ function onMouseOrTouch(event) {
 
 
 }else if (clickedObject.uuid === blueMoon.planet.scene.children[0].uuid) {
-
+  controls.enabled = false;
   console.log("PROJECTS!!!!! good job babyboy!!")
 resetCamera();
 resetPlanets();
          toggleBackgroundColor() ;
 
-}
+}else if(clickedObject.uuid === monkey.planet.scene.children[0].uuid){
+        launchPlanet(monkey.planet.scene,headEndPos,headCamEnd,headCamLookAt,headBaclRockPos,headOffset,"bio")
+
+        
   }
 
 }
@@ -769,6 +777,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9.7 TESTTTT ")
+console.log("CHASEDEV VER 0.9.8 TESTTTT ")
 
 
