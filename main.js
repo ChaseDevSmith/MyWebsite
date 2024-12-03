@@ -463,7 +463,7 @@ function moveText(planetText){
 //HEAD
 const headCamLookAt = new THREE.Vector3(0, 2.5, -4.7)
 const headCamEnd = new THREE.Vector3( 0,4,.7)
-const headBaclRockPos = new THREE.Vector3( -1.7, 5, -4)
+const headBaclRockPos = new THREE.Vector3( -1.57, 5.3, -4)
 const headEndPos = new THREE.Vector3( 0, 4.5, -4) 
 const headOffset = new THREE.Vector3(0,0,0)
 
