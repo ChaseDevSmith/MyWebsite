@@ -698,6 +698,15 @@ function onWheel(event) {
     newTorusMesh.rotation.z += delta * rotationSpeed; 
 
 }
+const carousel = document.querySelector('.carousel-section');
+carousel.addEventListener('wheel', (event) => {
+  if (event.deltaY !== 0) {
+   
+    carousel.scrollLeft += event.deltaY;
+
+    event.preventDefault(); 
+  }
+});
 // Handle mobile scroll (touch events)
 function onTouchStart(event) {
     if (event.touches.length === 1) {
@@ -761,6 +770,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 0.9.25 ")
+console.log("CHASEDEV VER 0.9.5 ")
 
 
