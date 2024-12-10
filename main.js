@@ -11,6 +11,14 @@ import { LoadingManager } from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build
 
 ///scene init, camera init, light init
 let {camera, scene, renderer, controlsEnabled, controls} = initScene()
+//tone setting camera
+const tColor = 0xffb49b;
+const tIntensity = 2.5;
+const dlight = new THREE.DirectionalLight(tColor, tIntensity);
+dlight.position.set(0, -1, 1);
+dlight.target.position.set(10, 0, -100);
+scene.add(dlight);
+scene.add(dlight.target);
 
 //loaders 
 const toggleButton = document.getElementById('toggle-controls');
@@ -779,6 +787,6 @@ function animate() {
   }
 }
 renderer.setAnimationLoop(animate);
-console.log("CHASEDEV VER 1.0.7 TESTTTT ");
+console.log("CHASEDEV VER 1.1.0 tone ");
 
 
