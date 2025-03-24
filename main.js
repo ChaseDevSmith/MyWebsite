@@ -617,6 +617,9 @@ function showBackRock(position, offset = new THREE.Vector3()){
   console.log( "hey im RIGHT HERERERE" ,backRock)
 }
 function onRockClick(event){
+    event.stopImmediatePropagation(); 
+  event.preventDefault();
+    ////// tryingggg 1.2.0
   const x = event.clientX || event.touches[0]?.clientX; 
   const y = event.clientY || event.touches[0]?.clientY;
   
